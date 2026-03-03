@@ -75,7 +75,7 @@ export default async function HomePage() {
         role={profileConfig.targetRole}
       >
         <div className="reveal-item">
-          <HeroSection profile={profile} />
+          <HeroSection />
         </div>
         <div className="reveal-item">
           <SkillsSection 
@@ -92,22 +92,10 @@ export default async function HomePage() {
           />
         </div>
         <div className="reveal-item">
-          <ExperienceSection 
-            education={profileConfig.education} 
-            certifications={profileConfig.certifications}
-            title="Experience" 
-            subtitle="Education and certifications"
-          />
+          <ExperienceSection />
         </div>
         <div className="reveal-item">
-          <ContactSection 
-            email={profileConfig.email} 
-            resumePath={profileConfig.resumePath}
-            links={[
-              { label: "GitHub", href: `https://github.com/${profileConfig.githubUsername}` },
-              { label: "Live", href: "https://foodloft.me" }
-            ]}
-          />
+          <ContactSection />
         </div>
       </FlipGateway>
     </>
