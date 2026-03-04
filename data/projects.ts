@@ -29,7 +29,7 @@ export const profileConfig = {
     "I design and ship product-ready systems with modern frontend experiences, resilient backend architecture, and local-first AI workflows.",
   availability: "Open to internship and junior software roles",
   email: "ahkarminoo88@gmail.com",
-  resumePath: "/resume.pdf",
+  resumePath: "/Ahkar Min Oo.pdf",
   githubUsername: "ahkarminoo",
   education: {
     school: "Assumption University of Thailand",
@@ -43,7 +43,7 @@ export const profileConfig = {
 export const contactLinks: ContactLink[] = [
   { label: "Email", href: "mailto:ahkarminoo88@gmail.com" },
   { label: "GitHub", href: "https://github.com/ahkarminoo" },
-  { label: "Live Product", href: "https://www.foodloft.me" }
+  { label: "Live Product", href: "https://foodloft.vercel.app/" }
 ];
 
 export const skillGroups: SkillGroup[] = [
@@ -70,7 +70,7 @@ export const projectOverrides: ProjectOverride[] = [
     repoName: "FoodLoft",
     displayName: "FoodLoft",
     slug: "foodloft",
-    liveUrl: "https://foodloft.me",
+    liveUrl: "https://foodloft.vercel.app/",
     oneLiner:
       "Workflow-driven restaurant operations platform across customer, owner, staff, and admin roles.",
     challenge:
