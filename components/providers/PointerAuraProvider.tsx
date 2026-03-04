@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 type PointerAuraProviderProps = {
@@ -12,8 +12,14 @@ export function PointerAuraProvider({ children }: PointerAuraProviderProps) {
   const target = useRef({ x: 0, y: 0, active: false, initialized: false });
   const rafId = useRef<number | null>(null);
   const nodesRef = useRef<NodeListOf<HTMLElement> | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;

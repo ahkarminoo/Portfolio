@@ -145,6 +145,23 @@ export function FlipGateway({ fullName, role, children }: FlipGatewayProps) {
         );
       })
       .to(rootRef.current?.querySelector('.gateway-stage') as HTMLElement, { opacity: 0, duration: 0.2 }, "<");
+
+    const fallbackTimeout = setTimeout(() => {
+      if (!revealed) {
+        setRevealed(true);
+        setIsAnimating(false);
+        if (contentRef.current) contentRef.current.style.display = "block";
+        if (cardRef.current) {
+          cardRef.current.style.display = "none";
+        }
+        if (rootRef.current) {
+          const stage = rootRef.current.querySelector('.gateway-stage') as HTMLElement;
+          if (stage) stage.style.display = "none";
+        }
+      }
+    }, 3000);
+
+    return () => clearTimeout(fallbackTimeout);
   }, [revealed, isAnimating]);
 
   return (
