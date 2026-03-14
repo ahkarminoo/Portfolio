@@ -133,18 +133,18 @@ export function FlipGateway({ fullName, role, children }: FlipGatewayProps) {
       .to(card, { scale: 0, opacity: 0, duration: 0.2, ease: "power3.in" }, "-=0.05")
       .to(portal, { scale: 1, opacity: 1, visibility: "visible", duration: 0.2, ease: "back.out(1.5)" }, "<")
       .to(portal, { scale: 0.5, duration: 0.15, ease: "power2.inOut" })
-      .to(content, { opacity: 1, duration: 0.3, ease: "power2.out", onStart: () => {
-        content.style.display = "block";
-      }})
       .to(portal, { scale: 15, opacity: 0, duration: 0.3, ease: "power3.in" }, "-=0.15")
+      .set(content, { display: "block", opacity: 0 })
+      .to(rootRef.current?.querySelector(".gateway-stage") as HTMLElement, { opacity: 0, duration: 0.22, ease: "power2.out" })
+      .to(content, { opacity: 1, duration: 0.28, ease: "power2.out" }, "<")
       .add(() => {
         const revealItems = gsap.utils.toArray<HTMLElement>(".reveal-item");
-        gsap.fromTo(revealItems, 
+        gsap.fromTo(
+          revealItems,
           { opacity: 0, y: 20 },
           { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "back.out(1.7)" }
         );
-      })
-      .to(rootRef.current?.querySelector('.gateway-stage') as HTMLElement, { opacity: 0, duration: 0.2 }, "<");
+      });
 
     const fallbackTimeout = setTimeout(() => {
       if (!revealed) {

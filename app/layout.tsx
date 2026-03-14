@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { profileConfig } from "@/data/projects";
-import { PointerAuraProvider } from "@/components/providers/PointerAuraProvider";
+import { ClientShell } from "@/components/shell/ClientShell";
 
 const siteUrl = "https://portfolio.example.com";
 
@@ -34,13 +35,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <PointerAuraProvider>
-          <div className="bg-aurora" aria-hidden />
-          <div className="bg-grid" aria-hidden />
-          <main className="site-shell">{children}</main>
-        </PointerAuraProvider>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;}catch(e){}})();`}
+        </Script>
+        <ClientShell>{children}</ClientShell>
       </body>
     </html>
   );

@@ -27,7 +27,8 @@ export function PointerAuraProvider({ children }: PointerAuraProviderProps) {
     const auraEl = auraRef.current;
     if (!auraEl) return;
 
-    gsap.ticker.fps(120);
+    // Keep the aura smooth without overdriving GSAP's ticker.
+    gsap.ticker.fps(60);
 
     const reactiveSelector = [
       ".section-card",
@@ -61,12 +62,7 @@ export function PointerAuraProvider({ children }: PointerAuraProviderProps) {
         const d = Math.sqrt(dx * dx + dy * dy);
 
         const proximity = Math.max(0, Math.min(1, 1 - d / maxDistance));
-        gsap.to(node, {
-          "--pointerProximity": proximity,
-          duration: 0.15,
-          ease: "power2.out",
-          overwrite: "auto"
-        });
+        node.style.setProperty("--pointerProximity", proximity.toFixed(3));
       }
     };
 
